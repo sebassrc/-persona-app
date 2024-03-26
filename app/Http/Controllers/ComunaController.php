@@ -34,8 +34,13 @@ class ComunaController extends Controller
      */
     public function create()
     {
-        //
+        $municipios = DB::table('tb_municipio')
+                        ->orderBy('muni_nomb')
+                        ->get();
+        
+        return view('comuna.new', ['municipios' => $municipios]);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -45,8 +50,21 @@ class ComunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /*
+        $comuna = new Comuna;
+        $comuna->codi = $request->id;
+        $comuna->nomb = $request->name;
+        $comuna->save();
+        */
+        
+        $comunas = DB::table('tb_comuna')
+                    ->join('tb_municipio', 'tb_comuna.muni_codi', '=', 'tb_municipio.muni_codi')
+                    ->select('tb_comuna.*', 'tb_municipio.muni_nomb')
+                    ->get();
+        
+        return view('comuna.index', ['comunas' => $comunas]);
     }
+    
 
     /**
      * Display the specified resource.
