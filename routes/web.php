@@ -35,13 +35,16 @@ Route::get('/comunas/{comuna}/edit', [ComunaController::class, 'edit'])->name('c
 //Rutas de municipios
 Route::get('/municipios', [MunicipioController::class, 'index']);
 Route::get('/municipios', [MunicipioController::class, 'index'])->name('municipios.index');
+Route::get('/municipios/create', [MunicipioController::class, 'create'])->name('municipios.create');
 
 
 
 //Rutas de departamentos
 Route::get('/departamentos', [DepartamentoController::class, 'index']);
 Route::get('/departamentos', [DepartamentoController::class, 'index'])->name('departamentos.index');
+Route::get('/departamentos/create', [DepartamentoController::class, 'create'])->name('departamentos.create');
 
 //Rutas de pais
 Route::get('/paises', [PaisController::class, 'index']);
 Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
+Route::get('/paises/create', [PaisController::class, 'create'])->name('paises.create');
