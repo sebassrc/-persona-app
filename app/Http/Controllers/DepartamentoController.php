@@ -44,7 +44,11 @@ class DepartamentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $departamentos = DB::table('tb_departamento')
+        ->get();
+    
+    return view('departamento.index', ['departamentos' => $departamentos]);
     }
 
     /**
