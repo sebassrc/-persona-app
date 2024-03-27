@@ -37,6 +37,7 @@ Route::get('/municipios', [MunicipioController::class, 'index']);
 Route::get('/municipios', [MunicipioController::class, 'index'])->name('municipios.index');
 Route::post('/municipios', [MunicipioController::class, 'store'])->name('municipios.store');
 Route::get('/municipios/create', [MunicipioController::class, 'create'])->name('municipios.create');
+Route::put('/municipios/{comuna}', [MunicipioController::class, 'update'])->name('municipios.update');
 Route::get('/municipios/{comuna}/edit', [MunicipioController::class, 'edit'])->name('municipios.edit');
 
 
@@ -45,6 +46,7 @@ Route::get('/departamentos', [DepartamentoController::class, 'index']);
 Route::get('/departamentos', [DepartamentoController::class, 'index'])->name('departamentos.index');
 Route::post('/departamentos', [DepartamentoController::class, 'store'])->name('departamentos.store');
 Route::get('/departamentos/create', [DepartamentoController::class, 'create'])->name('departamentos.create');
+Route::put('/departamentos/{comuna}', [DepartamentoController::class, 'update'])->name('departamentos.update');
 Route::get('/departamentos/{comuna}/edit', [DepartamentoController::class, 'edit'])->name('departamentos.edit');
 
 
@@ -54,4 +56,5 @@ Route::get('/paises', [PaisController::class, 'index']);
 Route::get('/paises', [PaisController::class, 'index'])->name('paises.index');
 Route::post('/paises', [PaisController::class, 'store'])->name('paises.store');
 Route::get('/paises/create', [PaisController::class, 'create'])->name('paises.create');
+Route::put('/paises/{comuna}', [PaisController::class, 'update'])->name('paises.update');
 Route::get('/paises/{comuna}/edit', [PaisController::class, 'edit'])->name('paises.edit');

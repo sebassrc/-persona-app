@@ -92,8 +92,12 @@ class MunicipioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $municipio = Municipio::find($id);
+        $municipio->update($request->all());
+    
+        return redirect()->route('municipios.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
