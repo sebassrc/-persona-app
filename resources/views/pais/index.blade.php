@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <h1>Listado de Países</h1>
-        <a href="{{ route('paises.create') }}" class="btn btn-success">Agregar</a>
+        <a href="{{route('paises.create') }}" class="btn btn-success">Agregar</a>
         <table class="table">
             <thead>
                 <tr>

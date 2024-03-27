@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MunicipioController extends Controller
 {
@@ -13,8 +14,15 @@ class MunicipioController extends Controller
      */
     public function index()
     {
-        //
+        $municipios = DB::tabe('tb_municipio')
+            ->join('tb_departamento', 'tb_municipio.depa_codi', '=', 'tb_departamento.depa_codi')
+            ->select('tb_municipio.*', 'tb_departamento.depa_nomb')
+            ->orderBy('tb_municipio.muni_nomb')
+            ->get();
+        
+        return view('municipio.index', ['municipios' => $municipios]);
     }
+    
 
     /**
      * Show the form for creating a new resource.

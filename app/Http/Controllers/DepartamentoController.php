@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DepartamentoController extends Controller
 {
@@ -13,9 +14,12 @@ class DepartamentoController extends Controller
      */
     public function index()
     {
-        //
+        $departamentos = DB::table('tb_departamento')
+            ->get();
+        
+        return view('departamento.index', ['departamentos' => $departamentos]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

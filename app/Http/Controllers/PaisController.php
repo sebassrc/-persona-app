@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaisController extends Controller
 {
@@ -13,8 +14,13 @@ class PaisController extends Controller
      */
     public function index()
     {
-        //
+        $paises = DB::table('tb_pais')
+            ->orderBy('pais_nomb')
+            ->get();
+        
+        return view('pais.index', ['paises' => $paises]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
