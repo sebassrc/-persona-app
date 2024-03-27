@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Municipio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -74,9 +75,14 @@ class MunicipioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $municipio = Municipio::find($id);
+        $departamentos = DB::table('tb_departamento')
+                          ->orderBy('depa_nomb')
+                          ->get();
+        
+        return view('municipio.edit', ['municipio' => $municipio, 'departamentos' => $departamentos]);
     }
-
+    
     /**
      * Update the specified resource in storage.
      *
