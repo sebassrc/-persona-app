@@ -14,7 +14,7 @@ class MunicipioController extends Controller
      */
     public function index()
     {
-        $municipios = DB::tabe('tb_municipio')
+        $municipios = DB::table('tb_municipio')
             ->join('tb_departamento', 'tb_municipio.depa_codi', '=', 'tb_departamento.depa_codi')
             ->select('tb_municipio.*', 'tb_departamento.depa_nomb')
             ->orderBy('tb_municipio.muni_nomb')
@@ -31,9 +31,10 @@ class MunicipioController extends Controller
      */
     public function create()
     {
-        //
-    }
-
+       //
+        }
+    
+    
     /**
      * Store a newly created resource in storage.
      *

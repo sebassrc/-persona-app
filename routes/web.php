@@ -37,6 +37,7 @@ Route::get('/municipios', [MunicipioController::class, 'index']);
 Route::get('/municipios', [MunicipioController::class, 'index'])->name('municipios.index');
 
 
+
 //Rutas de departamentos
 Route::get('/departamentos', [DepartamentoController::class, 'index']);
 Route::get('/departamentos', [DepartamentoController::class, 'index'])->name('departamentos.index');
