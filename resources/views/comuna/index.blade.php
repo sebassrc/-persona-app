@@ -8,39 +8,39 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" href="https://servicios.cecep.edu.co/Web_Spartacus/img/logo_vertical.svg" type="image/png">
 
     <title>Listado de Columnas</title>
 </head>
-
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">Personas</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/comunas">Comunas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/municipios">Municipios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/departamentos">Departamentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/paises">Paises</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">Personas</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="http://127.0.0.1:8000/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/comunas">Comunas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/municipios">Municipios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/departamentos">Departamentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="http://127.0.0.1:8000/paises">Paises</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <h1>Listado de Columnas</h1>
         <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
         <table class="table">
@@ -61,14 +61,12 @@
                     <td>
                         <a href="{{ route('comunas.edit', ['comuna' => $comuna->comu_codi]) }}" class="btn btn-info">Editar</a>
                         <form action="{{ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) }}" method='POST' style="display: inline-block">
-                            @method('delete')
+                        @method('DELETE')
                             @csrf
                             <input class="btn btn-danger" type="submit" value="Eliminar">
                         </form>
                     </td>
                 </tr>
-
-
                 @endforeach
             </tbody>
         </table>
@@ -87,3 +85,5 @@
 </body>
 
 </html>
+
+

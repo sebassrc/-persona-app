@@ -45,13 +45,21 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $paises = DB::table('tb_pais')
+{
+    $pais = new Pais();
+    $pais->pais_nomb = $request->nombre;
+    $pais->pais_capi = $request->capital;
+    $pais->save();
+
+    $paises = DB::table('tb_pais')
         ->orderBy('pais_nomb')
         ->get();
     
     return view('pais.index', ['paises' => $paises]);
-    }
+}
+
+    
+    
 
     /**
      * Display the specified resource.
@@ -88,10 +96,18 @@ class PaisController extends Controller
     public function update(Request $request, $id)
     {
         $pais = Pais::find($id);
-        $pais->update($request->all());
+        $pais->pais_nomb = $request->nombre;
+        $pais->pais_capi = $request->capital;
+        $pais->save();
     
-        return redirect()->route('paises.index');
+        $paises = DB::table('tb_pais')
+            ->orderBy('pais_nomb')
+            ->get();
+        
+        return view('pais.index', ['paises' => $paises]);
     }
+    
+    
     
 
     /**
@@ -105,9 +121,10 @@ class PaisController extends Controller
         $pais = Pais::find($id);
         $pais->delete();
     
-        $paises = DB::table('tb_pais')->get();
+        $paises = DB::table('tb_pais')
+        ->orderBy('pais_nomb')
+        ->get();
     
-        return view('pais.index', ['paises' => $paises]);
-    }
-    
+    return view('pais.index', ['paises' => $paises]);
+}
 }
