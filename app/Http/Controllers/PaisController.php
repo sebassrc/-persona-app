@@ -15,13 +15,9 @@ class PaisController extends Controller
      */
     public function index()
     {
-        $paises = DB::table('tb_pais')
-            ->orderBy('pais_nomb')
-            ->get();
-        
+        $paises = Pais::all();
         return view('pais.index', ['paises' => $paises]);
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -30,14 +26,13 @@ class PaisController extends Controller
      */
     public function create()
     {
-        $paises = DB::table('tb_pais')
-                  ->orderBy('pais_nomb')
-                  ->get();
-        
-        return view('pais.new', ['paises' => $paises]);
+        $capitales = DB::table('tb_pais')
+        ->orderBy('pais_capi')
+        ->get();
+
+        return view('pais.new', ['capitales' => $capitales]);
     }
-    
-    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -45,21 +40,17 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-{
-    $pais = new Pais();
-    $pais->pais_nomb = $request->nombre;
-    $pais->pais_capi = $request->capital;
-    $pais->save();
+    {
+        $pais = new Pais();
 
-    $paises = DB::table('tb_pais')
-        ->orderBy('pais_nomb')
-        ->get();
-    
-    return view('pais.index', ['paises' => $paises]);
-}
+        $pais -> pais_codi = $request->id;
+        $pais -> pais_nomb = $request->name;
+        $pais -> pais_capi = $request->code;
+        $pais -> save();
 
-    
-    
+        $paises = Pais::all();
+        return view('pais.index', ['paises' => $paises]);
+    }
 
     /**
      * Display the specified resource.
@@ -81,10 +72,12 @@ class PaisController extends Controller
     public function edit($id)
     {
         $pais = Pais::find($id);
-        
-        return view('pais.edit', ['pais' => $pais]);
+        $capitales = DB::table('tb_pais')
+        ->orderBy('pais_capi')
+        ->get();
+
+        return view('pais.edit', ['pais' => $pais, 'capitales' => $capitales]);
     }
-    
 
     /**
      * Update the specified resource in storage.
@@ -96,19 +89,14 @@ class PaisController extends Controller
     public function update(Request $request, $id)
     {
         $pais = Pais::find($id);
-        $pais->pais_nomb = $request->nombre;
-        $pais->pais_capi = $request->capital;
-        $pais->save();
-    
-        $paises = DB::table('tb_pais')
-            ->orderBy('pais_nomb')
-            ->get();
-        
+
+        $pais -> pais_nomb = $request->name;
+        $pais -> pais_capi = $request->code;
+        $pais -> save();
+
+        $paises = Pais::all();
         return view('pais.index', ['paises' => $paises]);
     }
-    
-    
-    
 
     /**
      * Remove the specified resource from storage.
@@ -118,13 +106,11 @@ class PaisController extends Controller
      */
     public function destroy($id)
     {
+
         $pais = Pais::find($id);
         $pais->delete();
-    
-        $paises = DB::table('tb_pais')
-        ->orderBy('pais_nomb')
-        ->get();
-    
-    return view('pais.index', ['paises' => $paises]);
-}
+
+        $paises = Pais::all();
+        return view('pais.index', ['paises' => $paises]);
+    }
 }
